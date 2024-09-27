@@ -6,6 +6,11 @@
 
 .squares {
     border: 1px solid red;
-    height: 65px;
-    width: 65px;
+    height: 105px;
+    width: 105px;
+}
+
+button {
+    height: 100px;
+    width: 100px;
 }
