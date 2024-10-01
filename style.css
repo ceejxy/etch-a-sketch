@@ -1,16 +1,27 @@
+html {
+    box-sizing: border-box;
+}
 
-#container {
+#container,
+#newContainer {
     display: flex;
     flex-wrap: wrap;
+    width: 960px;
+    height: 960px;
+    margin: auto;
 }
 
-.squares {
-    border: 1px solid red;
-    height: 105px;
-    width: 105px;
+
+.squares,
+.newSquares {
+    border: 1px solid black;
+    
+    box-sizing: border-box;
 }
+
 
 button {
-    height: 100px;
+    height: 150px;
     width: 100px;
 }
+
