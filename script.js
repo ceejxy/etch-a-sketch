@@ -3,7 +3,8 @@ const defaultContainer = document.querySelector('#container');
 for (let i = 0; i < 256; i++) {
     const square = document.createElement('div');
     square.classList.add('squares');
-    square.style.color = 'red';
+    square.style.width = 100/16 + '%';
+    square.style.height = 100/16 + '%';
     defaultContainer.appendChild(square);
 
     square.addEventListener('mouseover', function(e) {
@@ -30,13 +31,21 @@ button.addEventListener('click', function(e) {
 
    defaultContainer.remove();
 
-   userInput = prompt('enter dimensions for new grid');
-   newNumber = parseInt(userInput)**2;   
+   let userInput = prompt('enter dimensions for new grid');
+   let newNumber = (100 / userInput);   
 
-   for (let i = 0; i < newNumber; i++) {
+   if (userInput > 100) {
+      alert('Please select a number under 100')
+      return;
+   } else if (userInput != parseInt(userInput)) {
+      alert('Please enter a number with no special characters')
+   }
+
+   for (let i = 0; i < (userInput*userInput); i++) {
       const newSquare = document.createElement('div');
       newSquare.classList.add('newSquares');
-      newSquare.style.color = 'red';
+      newSquare.style.width = newNumber + '%';
+      newSquare.style.height = newNumber + '%';
       newContainer.appendChild(newSquare);
 
       newSquare.addEventListener('mouseover', function(e) {
@@ -45,33 +54,11 @@ button.addEventListener('click', function(e) {
   } 
 }) 
 
+newContainer.addEventListener('click', function(e) {
+   if (e.target.style.backgroundColor === 'gray') {
+    e.target.style.backgroundColor = 'white';
+ }})
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* function newGrid(gridNumber) {
-
-   userInput = prompt('enter any number below 100')
-   gridNumber = parseInt(userInput)
-
-   if (gridNumber <= 100) {
-      for (let i = 0; i < gridNumber; i++) {
-         const square = document.createElement('div');
-         square.classList.add('squares');
-         square.style.color = 'red';
-         defaultContainer.appendChild(square); 
-     }
-   }
-}*/ 
 
 
 
