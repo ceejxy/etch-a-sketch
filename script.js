@@ -17,36 +17,102 @@ container.addEventListener('click', function(e) {
     e.target.style.backgroundColor = 'white';
  }})
 
+ let userInput;
 
  // new container created depending on user input
  
 const button = document.createElement('button');
-button.innerText = 'Change number of Squares'
+button.innerText = 'New Grid';
 document.body.insertBefore(button, document.body.firstChild);
 
-const newContainer = document.querySelector('#newContainer')
+
+// function that returns an alert if the user input is greater than 100 or includes special characters
+
+function invalidInput() {
+
+   const regex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+   while (true) {
+      userInput = prompt('Enter a number between 1 and 100 to create a new grid');
+      if (userInput > 100) {
+      alert('Invalid Input: Please enter a number under 100')
+      continue;
+   } else if (regex.test(userInput)) {
+      alert('Invalid Input: Please enter a number with no special characters')
+      continue;
+   } else if (userInput === '') {
+      alert('Invalid Input: Please enter a number between 1 and 100')
+   } else break;
+}
+
+}
 
 
-button.addEventListener('click', function(e) {
+// function to take users input and create new grid and lets user know if their input is invalid
 
-   defaultContainer.remove();
+function newGrid(){
+
+   invalidInput();
+   let newNumber = (100 / userInput);  
+   
+   if (!isNaN(userInput) && userInput > 0) {
+      defaultContainer.innerHTML = '';
+   }
+   
+   for (let i = 0; i < (userInput*userInput); i++) {
+      const newSquare = document.createElement('div');
+      newSquare.classList.add('newSquares');
+      newSquare.style.width = newNumber + '%';
+      newSquare.style.height = newNumber + '%';
+      defaultContainer.append(newSquare);
+
+      newSquare.addEventListener('mouseover', function(e) {
+         e.target.style.backgroundColor = 'gray';
+      })  
+   }
+}
+
+button.addEventListener('click', newGrid);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* button.addEventListener('click', function(e) {
+
+   defaultContainer.innerHTML = '';
 
    let userInput = prompt('enter dimensions for new grid');
    let newNumber = (100 / userInput);   
 
    if (userInput > 100) {
-      alert('Please select a number under 100')
-      return;
+      alert('Please click the button again and enter a number under 100')  
    } else if (userInput != parseInt(userInput)) {
-      alert('Please enter a number with no special characters')
+      alert('Please click the button again and enter a number with no special characters')
    }
+
 
    for (let i = 0; i < (userInput*userInput); i++) {
       const newSquare = document.createElement('div');
       newSquare.classList.add('newSquares');
       newSquare.style.width = newNumber + '%';
       newSquare.style.height = newNumber + '%';
-      newContainer.appendChild(newSquare);
+      defaultContainer.append(newSquare);
+      
 
       newSquare.addEventListener('mouseover', function(e) {
          e.target.style.backgroundColor = 'gray';
@@ -54,14 +120,21 @@ button.addEventListener('click', function(e) {
   } 
 }) 
 
-newContainer.addEventListener('click', function(e) {
-   if (e.target.style.backgroundColor === 'gray') {
-    e.target.style.backgroundColor = 'white';
- }})
+const clearButton = document.createElement('button');
+document.body.insertBefore(clearButton, document.body.firstChild);
+
+function clearBoard() {
+ 
+   clearButton.innerText = 'Reset board';
 
 
+   if (newSquare.style.backgroundColor === 'gray' || square.style.backgroundColor === 'gray') {
+      newSquare.style.backgroundColor = 'white';
+      square.style.backgroundColor = 'white';
+   }
+}
 
-
+clearButton.addEventListener('click', clearBoard) */
 
 
 
