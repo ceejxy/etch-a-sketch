@@ -1,4 +1,22 @@
 const defaultContainer = document.querySelector('#container');
+const buttonContainer = document.querySelector('#buttonContainer')
+
+// create a button that changes the color of the squares to a random RGB color
+
+
+const changeColor = document.createElement('button');
+changeColor.innerText = 'RGB';
+buttonContainer.appendChild(changeColor);
+
+
+// create a button that reverts all squares back to blank
+const resetButton = document.createElement('button');
+resetButton.innerText = 'Reset Grid';
+buttonContainer.appendChild(resetButton);
+
+// create button that toggles 
+
+
 
 for (let i = 0; i < 256; i++) {
     const square = document.createElement('div');
@@ -8,14 +26,14 @@ for (let i = 0; i < 256; i++) {
     defaultContainer.appendChild(square);
 
     square.addEventListener('mouseenter', increaseOpacity(square)); 
-} 
+}
 
  // new grid created depending on user input
  let userInput;
  
 const button = document.createElement('button');
 button.innerText = 'New Grid';
-document.body.insertBefore(button, document.body.firstChild);
+buttonContainer.appendChild(button);
 
 
 // function that returns an alert if the user input is greater than 100 or includes special characters
@@ -69,24 +87,77 @@ function newGrid(){
    }
 }
 
-function increaseOpacity(square) {
-   let currentOpacity = 0.1;
+// function to get random RGB color
+const getRandomRGB = () => `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
 
-   return function(e) {
-      currentOpacity += 0.08;
-            if (currentOpacity > 1) {
-               cuurrentOpacity = 1;
-            
-            }
-            square.style.backgroundColor = 'black';
-            square.style.opacity = currentOpacity;
-            console.log('mouse enter');
-   };
+// function to increase the opacity every time the mouse enter event occurs on a square
+
+
+function increaseOpacity(square) {
+   let rgbMode = false;
+   let currentOpacity = 0.1;
+   square.hasColor = false;
+  
+   if (!rgbMode) {
+
+      return function(e) {
+         currentOpacity += 0.1;
+               if (currentOpacity > 1) {
+                  currentOpacity = 1;
+               }
+               if (!square.hasColor) {
+                  square.style.backgroundColor = getRandomRGB();
+                  square.hasColor = true;
+               }
+               square.style.opacity = currentOpacity;
+      };
+   } else {
+
+      return function(e) {
+         currentOpacity += 0.1;
+               if (currentOpacity > 1) {
+                  cuurrentOpacity = 1;
+               
+               }
+
+               if (!square.hasColor) {
+                  square.style.backgroundColor = 'black';
+               }
+               
+               square.style.opacity = currentOpacity;
+      };
+      
+   }
 }
 
+
+// function to reset the grid to all white spaces
+function resetGrid() {
+   const squares = document.querySelectorAll('.squares');
+   
+   squares.forEach(square => {
+      square.style.backgroundColor = 'white';
+      if (square.style.opacity > 0.1) {
+         square.style.opacity = 0.1;
+      }
+      square.hasColor = false;
+
+   })
+}
+
+
+
 button.addEventListener('click', newGrid);
+resetButton.addEventListener('click', resetGrid);
 
 
- 
 
 
+
+const rgbTest = document.querySelector('#practice');
+rgbTest.style.backgroundColor = 'white';
+
+rgbTest.addEventListener('mouseenter', increaseOpacity(rgbTest))
+
+
+// consider toggling rgb with statement variable rgbMode = false; clicking button sets it to true and then each square gets a random color 
