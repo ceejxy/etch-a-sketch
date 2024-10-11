@@ -2,26 +2,39 @@ html {
     box-sizing: border-box;
 }
 
-#container,
-#newContainer {
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#buttonContainer {
+    display: flex;
+    gap: 50px;
+}
+
+#container {
     display: flex;
     flex-wrap: wrap;
     width: 960px;
     height: 960px;
     margin: auto;
+    border: 5px solid black;
 }
 
 
-.squares,
-.newSquares {
-    border: 1px solid black;
-    
+.squares { 
     box-sizing: border-box;
+    border: 1px solid black;
+    opacity: 0.1;
 }
-
 
 button {
-    height: 150px;
-    width: 100px;
+    height: 100px;
+    width: 150px;
+    border-radius: 20px;
+    font-size: 20px;
 }
 
