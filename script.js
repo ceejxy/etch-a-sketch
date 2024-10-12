@@ -4,17 +4,26 @@ const buttonContainer = document.querySelector('#buttonContainer')
 // create a button that changes the color of the squares to a random RGB color
 const changeToRGB = document.createElement('button');
 changeToRGB.innerText = 'RGB';
+changeToRGB.classList.add('rgbButton')
 buttonContainer.appendChild(changeToRGB);
-
-// create a button that reverts all squares back to blank
-const resetButton = document.createElement('button');
-resetButton.innerText = 'Reset Grid';
-buttonContainer.appendChild(resetButton);
 
 // create button that changes color to black, turns of rgbMode
 const toBlack = document.createElement('button');
 toBlack.innerText = 'Black Squares';
+toBlack.classList.add('toBlack');
 buttonContainer.appendChild(toBlack);
+
+// create a button that reverts all squares back to blank
+const resetButton = document.createElement('button');
+resetButton.innerText = 'Reset Grid';
+resetButton.classList.add('reset')
+buttonContainer.appendChild(resetButton);
+
+ // create a button that prompts user input and creates a new grid
+ const newGridButton = document.createElement('button');
+ newGridButton.innerText = 'New Grid';
+ newGridButton.classList.add('newGrid');
+ buttonContainer.appendChild(newGridButton);
 
 
 // default grid 
@@ -30,10 +39,6 @@ for (let i = 0; i < 256; i++) {
     square.addEventListener('mouseenter', () => increaseOpacity(square));  
 }
 
- // container for all buttons
-const button = document.createElement('button');
-button.innerText = 'New Grid';
-buttonContainer.appendChild(button);
 
 
 // function that returns an alert if the user input is greater than 100 or includes special characters
@@ -164,7 +169,7 @@ toBlack.addEventListener('click', function() {
 });
 
 //event listener on button to create a new grid
-button.addEventListener('click', newGrid);
+newGridButton.addEventListener('click', newGrid);
 
 // event listener on button to reset the grid
 resetButton.addEventListener('click', resetGrid);
